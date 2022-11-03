@@ -1,0 +1,44 @@
+kind: ConfigMap
+metadata:
+  name: grafana-agent
+  namespace: monitoring
+apiVersion: v1
+data:
+  agent.yaml: |
+    server:
+     log_level: info
+    integrations:
+      node_exporter:
+         enabled: false
+      agent:
+        enabled: true
+        instance: primary
+    metrics:
+      wal_directory: /var/lib/agent/wal
+      global:
+        scrape_interval: 60s
+        external_labels:
+          cluster_name: home_test
+          env: dev
+      configs:
+      - name: primary
+        remote_write:
+        - url: https://localhost:1234
+        scrape_configs:
+          - job_name: "kubernetes-apiservers"
+            kubernetes_sd_configs:
+              - role: endpoints
+            scheme: https
+            tls_config:
+              ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+            authorization:
+              credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+            relabel_configs:
+              - source_labels:
+                  [
+                    __meta_kubernetes_namespace,
+                    __meta_kubernetes_service_name,
+                    __meta_kubernetes_endpoint_port_name,
+                  ]
+                action: keep
+                regex: grafana-agent;kubernetes;https

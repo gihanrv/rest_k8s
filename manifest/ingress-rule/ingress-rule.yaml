@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false" #disabled redirection
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: rest-k8s-ingress-rule
+  namespace: rest-app
+spec:
+  tls:
+  - hosts:
+    - platformeng.com
+    secretName: rest-k8s-tls-secret
+  ingressClassName: nginx
+  rules:
+   - host: platformeng.com
+     http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: rest-k8s-service
+            port: 
+              number: 80

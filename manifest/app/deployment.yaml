@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-k8s
+  namespace: rest-app
+  labels:
+    app: rest-k8s
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rest-k8s
+  template:
+    metadata:
+      labels:
+        app: rest-k8s
+    spec:
+      containers:
+      - name: rest-k8s
+        image: rest_k8s:0.1
+        resources:
+          limits:
+            cpu: "20m"
+            memory: "100Mi"
+          requests:
+            cpu: "20m"
+            memory: "100Mi"
+        ports:
+        - containerPort: 4000
+        livenessProbe:
+          tcpSocket:
+            port: 4000
+          failureThreshold: 1
+          initialDelaySeconds: 20
+          periodSeconds: 5
+        readinessProbe:
+          tcpSocket:
+            port: 4000
+          initialDelaySeconds: 10
+          periodSeconds: 5

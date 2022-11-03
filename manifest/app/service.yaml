@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-k8s-service
+  namespace: rest-app
+  labels:
+    app: rest-k8s
+spec:
+  selector:
+    app: rest-k8s
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4000
