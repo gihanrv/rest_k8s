@@ -31,10 +31,10 @@ spec:
           tcpSocket:
             port: 4000
           failureThreshold: 1
-          initialDelaySeconds: 20
-          periodSeconds: 5
+          initialDelaySeconds: 25
+          periodSeconds: 10
         readinessProbe:
           tcpSocket:
             port: 4000
-          initialDelaySeconds: 10
-          periodSeconds: 5
+          initialDelaySeconds: 25
+          periodSeconds: 10
