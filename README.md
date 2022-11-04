@@ -30,8 +30,17 @@ chmod +x install_docker.sh && ./install_docker.sh
 ```
  chmod +x setup.sh && ./setup.sh
 ```
+The ingress is using  "platformeng.com" as the host so you need to add a entry "127.0.0.1 platformeng.com" in your hosts file
+- Linux: /etc/hosts
+- Windows: C:\Windows\System32\drivers\etc\hosts
 
-setup.sh script 
+**Access the web application**
+```
+kubectl port-forward service/ingress-nginx -n ingress-nginx 8081:80  And use http://platformeng.com:8081/
+kubectl port-forward service/ingress-nginx -n ingress-nginx 8082:443 And use https://platformeng.com:8082/ 
+```
+
+**setup.sh script will**
 1. Install kind if not exist in the host
 2. Build the docker image with **rest_k8s:0.1**
 3. Load **rest_k8s:0.1** image into kind cluster
