@@ -40,6 +40,10 @@ kubectl port-forward service/ingress-nginx -n ingress-nginx 8081:80  And use htt
 kubectl port-forward service/ingress-nginx -n ingress-nginx 8082:443 And use https://platformeng.com:8082/ 
 ```
 
+<img width="407" alt="https_default" src="https://user-images.githubusercontent.com/29304495/199858686-4d52804f-f488-4dc4-9f25-0fbba3dbd408.png">
+
+<img width="398" alt="https_with_tls_selfsign" src="https://user-images.githubusercontent.com/29304495/199858719-9962da0a-9c2f-450b-a667-46f140701602.png">
+
 **setup.sh script will**
 1. Install kind if not exist in the host
 2. Build the docker image with **rest_k8s:0.1**
