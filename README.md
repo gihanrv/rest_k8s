@@ -38,6 +38,7 @@ setup.sh script
 4. Run kubernets manifest files to deploy webapplication , Nginx ingress controller , Ingress rules and Grafana agent for metrics/monitoring
 
 #### Tree View
+```
 ├── Dockerfile
 ├── README.md
 ├── app.py
@@ -66,7 +67,7 @@ setup.sh script
 │       └── namespace.yaml
 ├── requirements.txt
 └── setup.sh
-
+```
 
 
 
