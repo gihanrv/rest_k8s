@@ -42,7 +42,7 @@ The ingress is using  "platformeng.com" as the host so you need to add a entry "
 **Access the web application**
 ```
 kubectl port-forward service/ingress-nginx -n ingress-nginx 8081:80  And use http://platformeng.com:8081/
-kubectl port-forward service/ingress-nginx -n ingress-nginx 8082:443 And use https://platformeng.com:8082/ 
+kubectl port-forward service/ingress-nginx -n ingress-nginx 8082:443 And use https://platformeng.com:8080/ 
 ```
 
 <img width="407" alt="https_default" src="https://user-images.githubusercontent.com/29304495/199858686-4d52804f-f488-4dc4-9f25-0fbba3dbd408.png">
