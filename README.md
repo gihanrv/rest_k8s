@@ -1,7 +1,12 @@
 # REST API On Kind Kubernetes Cluster
 
 ## Description
-Build a service that responds to an HTTP GET request and returns Timestamp & hostname
+**Build a service that responds to an HTTP GET request and returns Timestamp & hostname**
+- The Python Flask application "app.py" will return the date, time, timestamp, and hostname.
+- The Docker file installs application dependencies based on requirements.txt files on top of the Python Alpine base image.
+- The Docker images have the tag "rest k8s:O.1" and expose the application on TCP 4000; they are 72.6 MB in size.
+- Manifest files are used to deploy the app as a Deployment with two replica sets and to expose the server as CLUSTER-IP.
+- There are manifest files for deploying nginx's ingress controller, ingress rules, and the Grafan agent as a solution for metrics and monitoring (the Grafana agent's deployment needs to be improved further). 
 
 #### Tech Stack
 * Kind K8s cluster
@@ -11,20 +16,20 @@ Build a service that responds to an HTTP GET request and returns Timestamp & hos
 * Grafana Agent
 
 ####  Read More
-   * **KIND** : kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI. https://kind.sigs.k8s.io/
+   * **Kind** : kind is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI. https://kind.sigs.k8s.io/.
    * **Python Flask** : Flask is a web framework, it’s a Python module that lets you develop web applications easily. https://pythonbasics.org/what-is-flask-python/
-   *  **Grafna agent**: Grafana Agent focuses metrics support around Prometheus’ remote_write protocol, so some Prometheus features, such as querying, local storage, recording rules, and alerts are not present https://grafana.com/docs/agent/latest/
+   *  **Grafana agent**: Grafana Agent focuses metrics support around Prometheus’ remote_write protocol, so some Prometheus features, such as querying, local storage, recording rules, and alerts are not present https://grafana.com/docs/agent/latest/.
 
 
 ## Getting Started
 
 ### Dependencies
-**!!** Docker must be installed on the host that your wish to run kind k8s cluster
-You can use install_docker.sh script to install docker on your host mechine
+**!!** Docker must be installed on the host that your wish to run kind k8s cluster.
+You can use install_docker.sh script to install docker on your host machine.
 ```
 chmod +x install_docker.sh && ./install_docker.sh
 ```
-### How to build and deploy application.
+### How to build and deploy application
 
 **Use setup.sh shell script to create environment and deploy application on kind cluster**
 ```
@@ -45,10 +50,10 @@ kubectl port-forward service/ingress-nginx -n ingress-nginx 8082:443 And use htt
 <img width="398" alt="https_with_tls_selfsign" src="https://user-images.githubusercontent.com/29304495/199858719-9962da0a-9c2f-450b-a667-46f140701602.png">
 
 **setup.sh script will**
-1. Install kind if not exist in the host
-2. Build the docker image with **rest_k8s:0.1**
-3. Load **rest_k8s:0.1** image into kind cluster
-4. Run kubernets manifest files to deploy webapplication , Nginx ingress controller , Ingress rules and Grafana agent for metrics/monitoring
+1. Install kind if it does not already exist on the host.
+2. Create a Docker image with **rest k8s:0.1**.
+3. Insert the **rest k8s:0.1** image into the kind cluster.
+4. Deploy the web application, Nginx ingress controller, Ingress rules, and Grafana agent for metrics/monitoring using the Kubernetes manifest files. 
 
 #### Tree View
 ```
