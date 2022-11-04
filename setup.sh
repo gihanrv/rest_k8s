@@ -62,9 +62,9 @@ echo -e "
     
     2. Port forward Nginx Ingress Load Balancer
         i.  kubectl port-forward service/ingress-nginx -n ingress-nginx 8081:80  And use http://platformeng.com:8081/
-       ii. kubectl port-forward service/ingress-nginx -n ingress-nginx 8082:443 And use https://platformeng.com:8082/ 
+       ii. kubectl port-forward service/ingress-nginx -n ingress-nginx 8082:443 And use https://platformeng.com:8080/ 
 
     3. View k8s cluster metrics
-       i.  kubectl port-forward service/grafana-agent -n monitoring 8080:80 
+       i.  kubectl port-forward service/grafana-agent -n monitoring 8082:80 
         **** Grafana agent should be configured with cortex remote_write endpoint.
 "
